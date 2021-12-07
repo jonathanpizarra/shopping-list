@@ -11,7 +11,7 @@ function createListElement() {
 	var span = document.createElement("span");
 	span.appendChild(document.createTextNode(input.value));
 	span.classList.add("item-value");
-	li.appendChild(span);
+	li.appendChild(span); // adding span for .done class toggle
 	bindToggleEvent(span);
 	addDeleteButton(li);
 	ul.insertBefore(li, ul.firstChild);
@@ -46,15 +46,13 @@ function bindToggleEvent(el){
 
 // bind class toggle event on existing items
 function bindListItems(){
-	let lis = document.querySelectorAll("li");
-	let items = document.querySelectorAll(".item-value");
+	let lis = document.querySelectorAll("li"); // li items
+	let items = document.querySelectorAll(".item-value"); // span items inside li
 	for(let i=0; i<items.length; i++){
-		bindToggleEvent( items[i] );
-		addDeleteButton( lis[i] );
+		bindToggleEvent( items[i] ); // add class toggle on span
+		addDeleteButton( lis[i] ); // add delete button on li
 	}
 }
-
-bindListItems();
 
 // add delete button
 function addDeleteButton(el){
@@ -62,7 +60,13 @@ function addDeleteButton(el){
 	delBtn.classList.add("del-btn");
 	delBtn.appendChild(document.createTextNode("\u2716") );
 	delBtn.addEventListener("click", function(){
-		el.remove();
+		el.remove(); // remove element upon clicking
 	});
 	el.appendChild(delBtn);
 }
+
+
+// bind class toggle event and add button on existing items
+bindListItems();
+
+// =================== end of solution ==================
